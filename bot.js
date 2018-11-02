@@ -1,10 +1,6 @@
-var ServerID = "496001281643773993";
-var ChannelID = "spam";
-
 const Discord = require('discord.js');
 const client = new Discord.Client();
-
-
+const prefix = '!';
 client.on('warn', console.warn);
 
 client.on('error', console.error);
@@ -18,13 +14,18 @@ client.on('disconnect', () => console.log('PROBOT credits miner had disconnected
 client.on('reconnecting', () => console.log('PROBOT credits miner is reconnecting...'));
 
 
-function timerFunc() {
-    client.on('message', msg => {
-        client.guilds.get(ServerID).channels.find(ChannelID).send(Math.random().toString(36).substring(7))
+client.on("message", msg => {  
 
+if(msg.content.startsWith(prefix + `spamon`)) {
 
-    });
-}
+if(!msg.member.hasPermission('ADMINISTRATOR')) return msg.channel.send(':no_entry: | `Adminstrator`للاسف ليس لديك صلاحية يجي ان يكون لديك برمشن!');
+
+let spam = msg.guild.channels.find('name', 'spam');
+
+ if (!spam) return msg.channel.send('**`spam`يرجى اضافة روم باسم**' );
+    function timerFunc() {
+      spam.send(Math.random().toString(36).substring(7))
+
 
 var timer = setTimeout(timerFunc, 1000);
 client.login(process.env.BOT_TOKEN); 
