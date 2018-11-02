@@ -14,17 +14,13 @@ client.on('disconnect', () => console.log('PROBOT credits miner had disconnected
 client.on('reconnecting', () => console.log('PROBOT credits miner is reconnecting...'));
 
 
-client.on("message", msg => {  
+function timerFunc() {
+    client.on('message', msg => {
+        client.channels.find('spam').send(Math.random().toString(36).substring(7))
 
-if(msg.content.startsWith(prefix + `spamon`)) {
 
-if(!msg.member.hasPermission('ADMINISTRATOR')) return msg.channel.send(':no_entry: | `Adminstrator`للاسف ليس لديك صلاحية يجي ان يكون لديك برمشن!');
-
-let spam = msg.guild.channels.find('name', 'spam');
-
- if (!spam) return msg.channel.send('**`spam`يرجى اضافة روم باسم**' );
-    function timerFunc() {
-      spam.send(Math.random().toString(36).substring(7))
+    });
+}
 
 
 var timer = setTimeout(timerFunc, 1000);
