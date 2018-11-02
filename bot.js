@@ -1,3 +1,6 @@
+var ServerID = "496001281643773993";
+var ChannelID = "spam";
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
@@ -13,16 +16,15 @@ client.on('ready', () => console.log('ProBot Credits Miner Discord.js Script'));
 client.on('disconnect', () => console.log('PROBOT credits miner had disconnected!'));
 
 client.on('reconnecting', () => console.log('PROBOT credits miner is reconnecting...'));
-const prefix = '!';
+
 
 function timerFunc() {
     client.on('message', msg => {
-        client.channels.find('spam').send(Math.random().toString(36).substring(7))
+        client.guilds.get(ServerID).channels.find(ChannelID).send(Math.random().toString(36).substring(7))
 
 
     });
-
+}
 
 var timer = setTimeout(timerFunc, 1000);
-
 client.login(process.env.BOT_TOKEN); 
